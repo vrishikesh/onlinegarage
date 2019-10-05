@@ -19,7 +19,8 @@
     "@hapi/inert": "^5.2.2",
     "@hapi/joi": "^16.1.4",
     "@hapi/vision": "^5.5.4",
-    "hapi-swagger": "^10.1.2"
+    "hapi-swagger": "^10.1.2",
+    "swagger-stats": "^0.95.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",

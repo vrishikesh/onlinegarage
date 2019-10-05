@@ -1,13 +1,16 @@
-const Hapi = require("@hapi/hapi");
-const Inert = require("@hapi/inert");
-const Vision = require("@hapi/vision");
-const HapiSwagger = require("hapi-swagger");
-const Process = require("process");
-const HapiAuthBasic = require("@hapi/basic");
+"use strict";
 
-const Pack = require("../package.json");
-const Routes = require("./routes");
-const Users = require("./data/users.json");
+import Hapi from "@hapi/hapi";
+import Inert from "@hapi/inert";
+import Vision from "@hapi/vision";
+import HapiSwagger from "hapi-swagger";
+import Process from "process";
+import HapiAuthBasic from "@hapi/basic";
+import swStats from "swagger-stats";
+
+import Pack from "../package.json";
+import Routes from "./routes";
+import Users from "./data/users.json";
 
 const start = async () => {
   const server = await new Hapi.server({
@@ -31,7 +34,8 @@ const start = async () => {
       plugin: HapiSwagger,
       options: swaggerOptions
     },
-    HapiAuthBasic
+    HapiAuthBasic,
+    swStats.getHapiPlugin
   ]);
 
   await server.auth.strategy("restricted", "basic", {
