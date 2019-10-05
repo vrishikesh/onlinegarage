@@ -1,9 +1,11 @@
 "use strict";
+// @flow
 
 import Hapi from "@hapi/hapi";
 import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
 import HapiSwagger from "hapi-swagger";
+// $FlowFixMe
 import Process from "process";
 import HapiAuthBasic from "@hapi/basic";
 import swStats from "swagger-stats";
