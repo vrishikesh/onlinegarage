@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./src/**/*.spec.js --require @babel/polyfill --require @babel/register",
     "flow": "flow"
   },
   "author": "",
@@ -27,8 +27,12 @@
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/node": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-flow": "^7.0.0",
-    "flow-bin": "^0.109.0"
+    "@babel/register": "^7.6.2",
+    "chai": "^4.2.0",
+    "flow-bin": "^0.109.0",
+    "mocha": "^6.2.1"
   }
 }

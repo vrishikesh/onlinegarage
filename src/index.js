@@ -2,15 +2,10 @@
 // @flow
 
 import Hapi from "@hapi/hapi";
-import Inert from "@hapi/inert";
-import Vision from "@hapi/vision";
-import HapiSwagger from "hapi-swagger";
 // $FlowFixMe
 import Process from "process";
-import HapiAuthBasic from "@hapi/basic";
-import swStats from "swagger-stats";
 
-import Pack from "../package.json";
+import Plugins from "./plugins";
 import Routes from "./routes";
 import Users from "./data/users.json";
 
@@ -20,25 +15,7 @@ const start = async () => {
     port: 3000
   });
 
-  const swaggerOptions = {
-    info: {
-      title: Pack.title + " Documentation",
-      version: Pack.version,
-      description: Pack.description
-    },
-    documentationPath: "/"
-  };
-
-  await server.register([
-    Inert,
-    Vision,
-    {
-      plugin: HapiSwagger,
-      options: swaggerOptions
-    },
-    HapiAuthBasic,
-    swStats.getHapiPlugin
-  ]);
+  await server.register(Plugins);
 
   await server.auth.strategy("restricted", "basic", {
     validate: async (request, username, password) => {

@@ -1,3 +1,3 @@
-const users = require("./users");
+// @flow
 
-module.exports = [].concat(users);
+export { default } from "./routes";
